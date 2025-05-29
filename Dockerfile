@@ -13,7 +13,7 @@ FROM nginx:alpine
 
 # Copy built files from previous stage
 #COPY --from=build /app/dist/* /usr/share/nginx/html/
-COPY --from=build /app/dist/angular017_jwt_login /usr/share/nginx/html/
+COPY --from=build /app/dist/angular-17-jwt-auth /usr/share/nginx/html/
 # Expose port 80
 EXPOSE 81
 
