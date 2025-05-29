@@ -4,6 +4,7 @@ FROM node:22-alpine as build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
+RUN ls -ltr */*
 COPY . .
 RUN npm run build -- --configuration production
 
@@ -11,8 +12,8 @@ RUN npm run build -- --configuration production
 FROM nginx:alpine
 
 # Copy built files from previous stage
-COPY --from=build /app/dist/* /usr/share/nginx/html/
-COPY ./dist/angular017_jwt_login /usr/share/nginx/html/
+#COPY --from=build /app/dist/* /usr/share/nginx/html/
+COPY --from=build /app/dist/angular017_jwt_login /usr/share/nginx/html/
 # Expose port 80
 EXPOSE 81
 
